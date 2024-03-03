@@ -5,7 +5,6 @@ import { loc } from '../support/locators'
 import { userData } from '../support/faker-checkout'
 
 Cypress.Commands.add('login', (user=Cypress.env('USER_EMAIL'), password=Cypress.env('USER_PASSWORD')) => {
-	cy.visit('/')
 	cy.get('[data-test="username"]').type(user)
 	cy.get('[data-test="password"]').type(password, {log: false})
 	cy.get('[data-test="login-button"]').click()
@@ -28,10 +27,15 @@ Cypress.Commands.add('getAtoZ',() => {
 
 Cypress.Commands.add('getZtoA',() => {
 	cy.get('.inventory_item_name', { timeout: 10000 }).then(($titles) => {
-		const allTitles = $titles.map((element) => Cypress.$(element).text().trim().toLowerCase()).get()
+		const allTitles = $titles
+		  .map((element) => Cypress.$(element).text().trim().toLowerCase())
+		  .get()
 
-		const isSorted = allTitles.every((title, index, array) => index === 0 || title.localeCompare(array[index - 1]) >= 0)
-		expect(isSorted).to.be.false
+		const isSorted = allTitles.every(
+		  (title, index, array) => index === 0 || title.localeCompare(array[index - 1]) <= 0
+		)
+
+		expect(isSorted).to.be.true
 	  })
 })
 

@@ -2,6 +2,7 @@ import { loc } from '../support/locators'
 
 describe('Review orders', () => {
 	beforeEach(() => {
+		cy.visit('/')
 		cy.login()
 		cy.reviewPage()
 	})

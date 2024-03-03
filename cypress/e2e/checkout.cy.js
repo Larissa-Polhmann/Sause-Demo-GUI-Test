@@ -3,6 +3,7 @@ import { userData } from '../support/faker-checkout'
 
 describe('Proceed to checkout', () => {
 	beforeEach(() => {
+		cy.visit('/')
 		cy.login()
 		cy.get(loc.HOME_PAGE.ADD_CART_BTN).click()
 		cy.get(loc.HOME_PAGE.CART_WITH_ITEMS).click()

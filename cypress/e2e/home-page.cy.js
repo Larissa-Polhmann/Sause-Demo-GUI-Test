@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import { loc } from '../support/locators'
 
-
 describe('Home page ecommerce', () => {
 	beforeEach(() => {
+		cy.visit('/')
 		cy.login()
 	})
 
@@ -11,7 +11,7 @@ describe('Home page ecommerce', () => {
 		cy.getAtoZ()
 	})
 
-	it('Sorting by Name Z-A', () => {
+	it.only('Sorting by Name Z-A', () => {
 		cy.get('select').select(loc.HOME_PAGE.NAME_A_TO_Z)
 		cy.get('select').select(loc.HOME_PAGE.NAME_Z_TO_A)
 		cy.getZtoA()

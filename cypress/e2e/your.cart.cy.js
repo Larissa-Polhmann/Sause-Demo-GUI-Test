@@ -2,10 +2,11 @@ import { loc } from '../support/locators'
 
 describe('Your cart items', () => {
 	beforeEach(() => {
+		cy.visit('/')
 		cy.login()
 	})
 
-	it.only('Add one item to cart', () => {
+	it('Add one item to cart', () => {
 		cy.get(loc.HOME_PAGE.ADD_CART_BTN).click()
 		cy.get(loc.HOME_PAGE.CART_WITH_ITEMS).click()
 		cy.get(loc.CART.CART_QUANTITY).should('have.text', '1')
